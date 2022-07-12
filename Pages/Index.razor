@@ -4,11 +4,26 @@
 
 <PageTitle>Fee statement</PageTitle>
 
-<h1>Fee Portal</h1>
+<div class="card">
+    <h5 class="card-header">Fee Statement</h5>
+    <div class="card-body">
+        <h5 class="card-title">Registration Number</h5>
+        <input @bind="inputValue" />
 
-<input @bind="inputValue" />
+        <button class="btn loginbtn" @onclick="gotopdf">Get Statement</button>
+    </div>
+</div>
+<style>
+    .loginbtn {
+        background-color: #198754;
+        color: white;
 
-<button class="btn btn-primary" @onclick="gotopdf">get fee statement</button>
+    }
+
+    .loginbtn :hover :focus {
+        color: white;
+    }
+</style>
 
 @code {
     private string inputValue;
@@ -16,10 +31,12 @@
 
     private async Task gotopdf()
     {
-        link = $@"https://eregistrar.tum.ac.ke/NimboStratus/reportServlet?reportFilename=studentstatementdetailed&reportTitle=STUDENT%20STATEMENT&dparam1=08-Mar-2022&dparam2=08-Mar-2022&sparam1=&sparam2=&sparam3=&sparam4={inputValue.ToUpper()}-FT&sparam5=&sparam6=&sparam7={inputValue.ToUpper()}&sparam8=&sparam9=&sparam10=&sparam11=&sparam12={inputValue.ToUpper()}&image1=logo3.gif&inparam1=0&inparam2=0&sparam13=&sparamtitle=&tenanid=tum";
+        link =
+        $@"https://eregistrar.tum.ac.ke/NimboStratus/reportServlet?reportFilename=studentstatementdetailed&reportTitle=STUDENT%20STATEMENT&dparam1=08-Mar-2022&dparam2=08-Mar-2022&sparam1=&sparam2=&sparam3=&sparam4={inputValue.ToUpper()}-FT&sparam5=&sparam6=&sparam7={inputValue.ToUpper()}&sparam8=&sparam9=&sparam10=&sparam11=&sparam12={inputValue.ToUpper()}&image1=logo3.gif&inparam1=0&inparam2=0&sparam13=&sparamtitle=&tenanid=tum";
 
         string
-        link2 = "https://eregistrar.tum.ac.ke/NimboStratus/reportServlet?reportFilename=studenttranscript&reportTitle=PROVISIONAL%20EXAMINATION%20TRANSCRIPT&dparam1=14-Mar-2022&dparam2=14-Mar-2022&sparam1=&sparam2=&sparam3=&sparam4=BSSC/SEP2017/J-FT&sparam5=&sparam6=&sparam7=&sparam8=&sparam9=&sparam10=2017/2018&sparam11=I&sparam12=%27BSSC/195J/2017%27&image1=logo3.gif&inparam1=0&inparam2=0&sparam13=&sparamtitle=&tenanid=tum";
+        link2 =
+        "https://eregistrar.tum.ac.ke/NimboStratus/reportServlet?reportFilename=studenttranscript&reportTitle=PROVISIONAL%20EXAMINATION%20TRANSCRIPT&dparam1=14-Mar-2022&dparam2=14-Mar-2022&sparam1=&sparam2=&sparam3=&sparam4=BSSC/SEP2017/J-FT&sparam5=&sparam6=&sparam7=&sparam8=&sparam9=&sparam10=2017/2018&sparam11=I&sparam12=%27BSSC/195J/2017%27&image1=logo3.gif&inparam1=0&inparam2=0&sparam13=&sparamtitle=&tenanid=tum";
         await jsRuntime.InvokeAsync<object>("open", link, "_blank");
     }
 }
